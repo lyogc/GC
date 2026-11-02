@@ -111,7 +111,6 @@ main .wrap{padding-block:22px 48px;display:grid;gap:22px}
       <button class="pill" id="copy" type="button">Copier le texte</button>
       <button class="pill vivid" id="word" type="button">Télécharger le Word</button>
     </div>
-    <div id="read" hidden></div>
     <div id="alerts" hidden></div>
     <div class="paper">
       <p class="dt" id="docTitle">Certificat de travail</p>
@@ -119,6 +118,11 @@ main .wrap{padding-block:22px 48px;display:grid;gap:22px}
       <div id="out" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Texte du certificat, modifiable"></div>
     </div>
     <p style="display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:12px 0 0"><span class="legend"><i></i>À compléter dans le Word · le texte reste modifiable ici</span><span class="priv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Rien n'est enregistré ni envoyé</span></p>
+  </section>
+
+  <section class="blk" aria-labelledby="h4s">
+    <div class="blk-head"><span class="num">3</span><h2 id="h4s">Ce que dit le questionnaire</h2></div>
+    <div id="read"></div>
   </section>
 </div></main>
 
@@ -259,7 +263,7 @@ function rendre(){
   $("read").innerHTML = `
     <div class="col"><div class="grp">Poste et mission</div>
       ${kv("Service", rep.SERVICE)}${kv("Métier", rep.FONCTION)}${kv("Sexe", rep.SEXE === "F" ? "Femme" : rep.SEXE === "H" ? "Homme" : "")}
-      ${kv("Mission", rep.DATE_DEBUT ? rep.DATE_DEBUT + (rep.DATE_FIN ? " – " + rep.DATE_FIN : " – en cours") : "")}${kv("Motif", MOTIFS[a.motif])}</div>
+      ${kv("Mission", rep.DATE_DEBUT ? "du " + dateLongue(rep.DATE_DEBUT) + (rep.DATE_FIN ? " au " + dateLongue(rep.DATE_FIN) : ", en cours") : "")}${kv("Motif", MOTIFS[a.motif])}</div>
     <div class="col"><div class="grp">Savoir-faire</div>${rub("Savoir-faire")}</div>
     <div class="col"><div class="grp">Savoir-être</div>${rub("Savoir-être")}</div>
     <div class="col"><div class="grp">Qualités</div><div class="chips">${a.adjs.map(x=>`<span class="chip">${esc(fem ? x["Féminin"] : x.Masculin)}</span>`).join("") || "<span class='chip'>Aucune</span>"}</div>
