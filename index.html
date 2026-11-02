@@ -189,6 +189,15 @@ function tachesDuMetier(){
       (!norm(r.Service) || norm(r.Service) === code || norm(r.Service) === svc))
     .map(r => String(r["Tâche"]||"").trim()).filter(Boolean);
 }
+// 01.08.2023 -> 1er août 2023 ; une date illisible est laissée telle quelle
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+function dateLongue(t){
+  const m = String(t).trim().match(/^(\d{1,2})[.\/\-\s](\d{1,2})[.\/\-\s](\d{2}|\d{4})$/);
+  if (!m) return t;
+  const j = +m[1], mo = +m[2], a = m[3].length === 2 ? 2000 + +m[3] : +m[3];
+  if (j < 1 || j > 31 || mo < 1 || mo > 12) return t;
+  return (j === 1 ? "1er" : String(j)) + " " + MOIS[mo - 1] + " " + a;
+}
 function assembler(){
   const alerts = [];
   fem = rep.SEXE === "F";
@@ -207,8 +216,8 @@ function assembler(){
     .replaceAll("{Service}", serviceTexte()).replaceAll("{Fonction}", rep.FONCTION || "[métier]")
     .replaceAll("{Il}", fem?"Elle":"Il").replaceAll("{il}", fem?"elle":"il").replaceAll("{le}", fem?"la":"le")
     .replaceAll("{e}", fem?"e":"").replaceAll("{adjectifs}", liste);
-    if (rep.DATE_DEBUT) t = t.replaceAll("{Debut}", rep.DATE_DEBUT);
-    if (rep.DATE_FIN) t = t.replaceAll("{Fin}", rep.DATE_FIN);
+    if (rep.DATE_DEBUT) t = t.replaceAll("{Debut}", dateLongue(rep.DATE_DEBUT));
+    if (rep.DATE_FIN) t = t.replaceAll("{Fin}", dateLongue(rep.DATE_FIN));
     for (const [k,l] of Object.entries(A_COMPLETER)) t = t.replaceAll(`{${k}}`, `[${l}]`);
     return t.replace(/\[Prénom\] \[Nom\]/g, "[Prénom Nom]"); };
   const parMotif = partie => { const ps = rows.filter(r => r.Partie === partie); return ps.find(r => r.Code === "MOTIF_" + motif) || ps.find(r => r.Code === "TOUS"); };
