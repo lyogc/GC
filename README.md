@@ -17,6 +17,6 @@ Tout se passe dans le navigateur : rien n'est enregistré ni envoyé.
 |---|---|
 | `index.html` | L'application, en un seul fichier |
 | `FORM_Certificat_Travail.pdf` | Le questionnaire à remplir |
-| `MOD_Bibliotheque_Certificat_Travail.xlsx` | La bibliothèque : formulations, services de la Ville et cahiers des charges par métier (exemple, à valider) |
+| `MOD_Bibliotheque_Certificat_Travail.xlsx` | La bibliothèque : formulations, services de la Ville, métiers par service (épicène) et cahiers des charges (à compléter) |
 
 Les codes des champs du questionnaire (par exemple `SF_QUALITE`) sont ceux de la colonne « Code » de la bibliothèque : c'est ce qui fait le lien entre les deux.
