@@ -103,20 +103,17 @@ main .wrap{padding-block:22px 48px;display:grid;gap:22px}
     </div>
   </section>
 
-  <section class="blk" aria-labelledby="h2s" aria-live="polite">
-    <div class="blk-head"><span class="num">2</span><h2 id="h2s">Ce que dit le questionnaire</h2></div>
-    <div id="read"></div>
-    <div class="alerts" id="alerts"></div>
-  </section>
 
   <section class="blk" aria-labelledby="h3s">
-    <div class="blk-head"><span class="num">3</span><h2 id="h3s">Certificat</h2>
+    <div class="blk-head"><span class="num">2</span><h2 id="h3s">Certificat</h2>
       <span class="motif"><span class="d"></span><span id="motifTxt"></span></span>
       <span class="sp"></span>
       <span class="msg" id="msg" role="status"></span>
       <button class="pill" id="copy" type="button">Copier le texte</button>
       <button class="pill vivid" id="word" type="button">Télécharger le Word</button>
     </div>
+    <div id="read" hidden></div>
+    <div class="alerts" id="alerts" aria-live="polite" style="max-width:820px;margin:0 auto 14px"></div>
     <div class="paper">
       <p class="dt" id="docTitle">Certificat de travail</p>
       <p class="sub" id="docSub"></p>
